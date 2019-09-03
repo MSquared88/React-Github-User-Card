@@ -6,7 +6,7 @@ import Followers from './components/Followers'
 import User from './components/User'
 
 //styling
-import { CardDeck, Row, Col, Jumbotron, Container, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap'
+import { CardDeck, Row, Col, Jumbotron, Container, Button, Form, FormGroup, Label, Input, FormTextm, CardGroup } from 'reactstrap'
 import './App.css';
 
 class App extends React.Component {
@@ -55,19 +55,22 @@ class App extends React.Component {
           </Container>
       </Jumbotron>
         <Row>
-          <Col sm={4}>
+          <Col sm={3}>
             <CardDeck>
               <User userData= {this.state.userData}/>
             </CardDeck>
           </Col>
         </Row>
-          <Col sm={4}>
-              {this.state.userFollowers.map(follower => {
-                return(
-                  <Followers follower={follower}/>
-                )
-              })}
-          </Col>
+        <h1 style={{textAlign: 'center', color: 'black', fontSize: '6rem'}}>Followers</h1>
+        <Row>
+          {this.state.userFollowers.map(follower => {
+            return(
+              <Col sm={2}>
+                <Followers follower={follower}/>  
+              </Col>
+            )
+          })}
+        </Row>
       </div>
     );
   }

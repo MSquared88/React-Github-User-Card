@@ -30,9 +30,19 @@
 .form-control {
   margin-bottom: 20px;
 }
-
+.card.body {
+  margin-bottom: 20px;
+}
+.card-header {
+  background: gray !important;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
 .btn-secondary {
   color: black !important;
-  font-size: 1.5rem !important;
   font-weight: 600 !important;
+}
+
+.row {
+  justify-content: center;
 }

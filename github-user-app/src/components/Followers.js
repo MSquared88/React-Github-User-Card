@@ -5,6 +5,7 @@ import { Card, Button, CardImg, CardTitle, CardText, CardDeck, CardSubtitle, Car
 function Follower(props) { 
     console.log(props.userData)
 	return(
+		
 			<Card color= 'primary' body>
 				<CardHeader>{props.follower.login}</CardHeader>
 				<CardImg 
