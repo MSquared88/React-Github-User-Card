@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios'
 
 //components
-import FollowersList from './components/FollowersList'
+import Followers from './components/Followers'
 import User from './components/User'
 
 //styling
@@ -14,7 +14,8 @@ class App extends React.Component {
     super()
     this.state = {
       userName: 'MSquared88',
-      userData: []
+      userData: [],
+      userFollowers: []
     }
   }
   componentDidMount() {
@@ -26,13 +27,19 @@ class App extends React.Component {
       console.log(this.state.userData)
     })
 
-
+    axios.get(`https://api.github.com/users/${this.state.userName}/followers`)
+    .then(res => {
+      this.setState({
+        userFollowers: res.data
+      })
+      console.log(this.state.userFollowers)
+    })
   }
   
   render() {
     return (
       <div>
-        <Jumbotron fluid>
+        <Jumbotron fluid >
           <Container fluid className="text-center" >
             <h1 className="display-1">GitHub User Cards</h1>
             <h4>Input a GitHub user and see that user and there followers.</h4>
@@ -41,7 +48,7 @@ class App extends React.Component {
               <Col md={6} >
                 <FormGroup form >
                   <Input type="email" name="email" id="exampleEmail" placeholder="Enter User Name Here" />
-                  <Button color="primary" onClick= {this.getUser}>Find User</Button>
+                  <Button color="secondary" onClick= {this.getUser}>Find User</Button>
                 </FormGroup>
               </Col>
             </Row>
@@ -54,6 +61,13 @@ class App extends React.Component {
             </CardDeck>
           </Col>
         </Row>
+          <Col sm={4}>
+              {this.state.userFollowers.map(follower => {
+                return(
+                  <Followers follower={follower}/>
+                )
+              })}
+          </Col>
       </div>
     );
   }

@@ -18,6 +18,10 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.jumbotron-fluid {
+  background: #007bff !important;
+}
 .form-row {
   justify-content: center;
 
@@ -25,4 +29,10 @@
 
 .form-control {
   margin-bottom: 20px;
+}
+
+.btn-secondary {
+  color: black !important;
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
 }
