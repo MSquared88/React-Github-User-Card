@@ -23,7 +23,7 @@
   background: #007bff !important;
 }
 .form-row {
-  justify-content: center;
+  justify-content: center !important;
 
 }
 
@@ -31,7 +31,7 @@
   margin-bottom: 20px;
 }
 .card.body {
-  margin-bottom: 20px;
+  margin-bottom: 20px !important;
 }
 .card-header {
   background: gray !important;
