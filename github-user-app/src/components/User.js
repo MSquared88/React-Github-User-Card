@@ -1,9 +1,8 @@
 import React from 'react'
  
-import { Card, Button, CardImg, CardTitle, CardText, CardDeck, CardSubtitle, CardBody, CardHeader } from 'reactstrap'
+import { Card, Button, CardImg, CardTitle, CardText, CardSubtitle, CardBody, CardHeader } from 'reactstrap'
 
 function User(props) { 
-    console.log(props.userData)
 	return(
 			<Card color= 'primary' body>
 				<CardHeader>{props.userData.login}</CardHeader>
