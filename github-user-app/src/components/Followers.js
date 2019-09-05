@@ -1,9 +1,8 @@
 import React from 'react'
  
-import { Card, Button, CardImg, CardTitle, CardText, CardDeck, CardSubtitle, CardBody, CardHeader } from 'reactstrap'
+import { Card, Button, CardImg, CardText, CardBody, CardHeader } from 'reactstrap'
 
 function Follower(props) { 
-    console.log(props.userData)
 	return(
 		
 			<Card color= 'primary' body>
