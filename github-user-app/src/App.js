@@ -13,7 +13,7 @@ class App extends React.Component {
   constructor(){
     super()
     this.state = {
-      userName: '',
+      userName: 'MSquared88',
       userData: [],
       userFollowers: []
     }
@@ -61,9 +61,6 @@ class App extends React.Component {
     })
   }
   
-  componentDidUpdate() {
-
-  }
 
   render() {
     return (
@@ -95,15 +92,22 @@ class App extends React.Component {
             </Row>
           </Container>
       </Jumbotron>
-        <Row>
-          <Col sm={3}>
-            <CardDeck>
-              <User userData= {this.state.userData}/>
-            </CardDeck>
-          </Col>
-        </Row>
+      {(this.state.userData.length === 0)
+      ? <span></span>
+      : 
+        <div>
+          <Row>
+            <Col sm={3}>
+              <CardDeck>
+                <User userData= {this.state.userData}/>
+              </CardDeck>
+            </Col>
+          </Row>
+          <h1 style={{textAlign: 'center', color: 'black', fontSize: '6rem'}}>Followers</h1>
+        </div>       
+      }
+
       
-        <h1 style={{textAlign: 'center', color: 'black', fontSize: '6rem'}}>Followers</h1>
         <Row>
           {this.state.userFollowers.map(follower => {
             return(
