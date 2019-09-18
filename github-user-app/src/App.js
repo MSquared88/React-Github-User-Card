@@ -1,12 +1,12 @@
 import React from 'react';
-import axios from 'axios';
+import axios from 'axios'
 
 //components
 import Followers from './components/Followers'
 import User from './components/User'
 
 //styling
-import { CardDeck, Row, Col, Jumbotron, Container, Button, Form, Input,} from 'reactstrap'
+import { CardDeck, Row, Col, Jumbotron, Container, Button, Form, FormGroup, Label, Input, FormTextm, CardGroup } from 'reactstrap'
 import './App.css';
 
 class App extends React.Component {
@@ -15,19 +15,18 @@ class App extends React.Component {
     this.state = {
       userName: 'MSquared88',
       userData: [],
-      userFollowers: [],
-      searchedName: ''
+      userFollowers: []
     }
   }
 
   handleChange = e => {
-    console.log(this.state.searchedName)
     this.setState({
       [e.target.name]: e.target.value
     });
   };
 
-  getUser = () => {
+  getUser = e => {
+    e.preventDefault()
     axios.get(`https://api.github.com/users/${this.state.userName}`)
     .then(res => {
       this.setState({
@@ -44,6 +43,24 @@ class App extends React.Component {
     })
   }
 
+  componentDidMount() {
+    axios.get(`https://api.github.com/users/${this.state.userName}`)
+    .then(res => {
+      this.setState({
+        userData: res.data
+      })
+      console.log(this.state.userData)
+    })
+
+    axios.get(`https://api.github.com/users/${this.state.userName}/followers`)
+    .then(res => {
+      this.setState({
+        userFollowers: res.data
+      })
+      console.log(this.state.userFollowers)
+    })
+  }
+
   render() {
     return (
       <div>
@@ -54,25 +71,26 @@ class App extends React.Component {
 
             <Row form className="text-center">
               <Col md={6} >
-                <Form onSubmit={this.updateUser}>
+                <FormGroup form onSubmit= {null}>
                   <Input 
                   type="text" 
                   placeholder="Enter User Name Here" 
-                  value={this.state.searchedName}
+                  value={this.state.userName}
+                  type="text"
                   onChange={this.handleChange}
-                  name="searchedName"
+                  name="userName"
                   />
                   <Button 
                   color="secondary" 
-                  type="submit"
+                  onClick= {this.getUser}
                   >
                     Find User
                   </Button>
-                </Form>
+                </FormGroup>
               </Col>
             </Row>
           </Container>
-      </Jumbotron>
+      </Jumbotron>+
       {(this.state.userData.length === 0)
       ? <span></span>
       : 
@@ -87,8 +105,6 @@ class App extends React.Component {
           <h1 style={{textAlign: 'center', color: 'black', fontSize: '6rem'}}>Followers</h1>
         </div>       
       }
-
-      
         <Row>
           {this.state.userFollowers.map(follower => {
             return(
